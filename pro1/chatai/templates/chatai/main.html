@@ -1,0 +1,19 @@
+{% extends "chatai/layout.html" %}
+{% load static %}
+
+{% block script %}
+<script src="{% static 'chatai/script.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div id='box' class="container">
+        <h1>Custom-GPT</h1>
+        <h5>Uncensored AI Chat Model With Support For Custom System Prompts To Make The AI however You Want.</h5>
+        <div class="chat-window">
+            <div id="chat-box" class="chat-box"></div>
+            <input type="text" id="user-input" placeholder="Type your message..." />
+            <button id="send-button">Send</button>
+            <img id="load" style="display: none; margin-top: 5px;" src="{% static 'chatai/images/loading.gif' %}" alt="Girl in a jacket" width="100" height="120"> 
+        </div>
+    </div>
+{% endblock %}
