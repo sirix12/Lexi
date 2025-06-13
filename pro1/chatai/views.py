@@ -134,12 +134,6 @@ def index(request):
     return render(request, "chatai/main.html")
 
 
-"""def get_a_name(who: str) -> dict:
-    print("whoo")
-    data = {"name": "your mom"}
-    return data"""
-
-
 def completions(request):
     print("gotcha!!!")
 
@@ -187,8 +181,6 @@ def completions(request):
             args = json.loads(tool_call.function.arguments)
             result = fetch_wikipedia_content(args["search_query"])
 
-            # print(json.dumps(result))
-
             chat.append(
                 {
                     "role": "tool",
@@ -197,12 +189,10 @@ def completions(request):
                 }
             )
 
-        # print(chat)
         chat.append(
             {"role": "assistant", "content": completion.choices[0].message.content}
         )
 
-        # print(chat)
         chat_logs.objects.filter(session_key=session_key_now).update(
             messages=serialize(chat)
         )
@@ -216,8 +206,7 @@ def completions(request):
                 "content": completion.choices[0].message.content,
             }
         )
-        # messages = serialize(chat)
-        print(chat)
+
         return streaming_response(chat, session_key_now)
 
 
@@ -235,11 +224,8 @@ def chunk_response(chat, session_key_now):
         if content is not None:
             full_response += content
             yield content
-    # print(f"third{serialize(chat)}")
     chat.append({"role": "assistant", "content": full_response})
-    # print(f"first {chat}, second {serialize(chat)}")
     chat = serialize(chat)
-    # print(chat)
     chat_logs.objects.filter(session_key=session_key_now).update(messages=chat)
 
 
