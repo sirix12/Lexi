@@ -11,7 +11,7 @@ import urllib.request
 import json
 
 client = OpenAI(base_url="http://192.168.1.6:1234/v1", api_key="lm-studio")
-
+model = "llama-3.1-8b-lexi-uncensored-v2"
 
 def get_or_create_anonymous_user(request):
     if not request.session.session_key:
@@ -156,7 +156,7 @@ def completions(request):
     chat.append({"role": "user", "content": usesrinput})
 
     completion = client.chat.completions.create(
-        model="llama-3.1-8b-lexi-uncensored-v2",
+        model= model,
         messages=chat,
         tools=[wiki_tool],
         function_call="auto",
@@ -212,7 +212,7 @@ def completions(request):
 
 def chunk_response(chat, session_key_now):
     completion = client.chat.completions.create(
-        model="llama-3.1-8b-lexi-uncensored-v2",
+        model= model,
         messages=chat,
         stream=True,
     )
