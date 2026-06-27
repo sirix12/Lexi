@@ -27,14 +27,14 @@ If you just want a terminal-based chatbot with spinner effects and Wikipedia sea
    ```bash
    pip install openai
    ```
-2. Open `pro1/code.py` and set your local server base URL and the model name:
+2. Open `code.py` and set your local server base URL and the model name:
    ```python
    client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
    MODEL = "llama-3.1-8b-lexi-uncensored-v2"
    ```
 3. Run the script:
    ```bash
-   python pro1/code.py
+   python code.py
    ```
 
 ### Web App Version
@@ -44,18 +44,18 @@ To run the full Django interface with session logging and system prompt controls
    ```bash
    pip install django openai
    ```
-2. Open `pro1/chatai/views.py` and adjust the API URL and model:
+2. Open `chatai/views.py` and adjust the API URL and model:
    ```python
    client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
    model = "llama-3.1-8b-lexi-uncensored-v2"
    ```
 3. Run migrations to initialize the SQLite database:
    ```bash
-   python pro1/manage.py migrate
+   python manage.py migrate
    ```
 4. Start the Django development server:
    ```bash
-   python pro1/manage.py runserver
+   python manage.py runserver
    ```
 5. Open your browser and navigate to `http://127.0.0.1:8000/`.
 
